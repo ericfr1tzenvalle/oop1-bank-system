@@ -1,6 +1,7 @@
 package org.contaBancaria.model;
 
 import java.util.Random;
+import org.contaBancaria.model.enums.TipoConta;
 
 public abstract class Conta {
     private final String cpf;
@@ -8,6 +9,7 @@ public abstract class Conta {
     private double saldo;
     private String senha;
     private String nome;
+    
 
     public Conta(String nome,String cpf,String senha){
         this.nome = nome;
@@ -15,7 +17,10 @@ public abstract class Conta {
         this.numeroDaConta = geraNumeroDaConta();
         this.senha = senha;
         this.saldo = 0;
+        
     }
+    
+    
 
     public String getCpf() {
         return cpf;
@@ -29,6 +34,10 @@ public abstract class Conta {
         }
         return numeroConta.toString();
 
+    }
+    
+    public String getNome(){
+        return nome;
     }
 
 
@@ -49,7 +58,7 @@ public abstract class Conta {
     public void depositar(double valor){
         this.saldo += valor;
     }
-    public abstract void sacar(double valor);
+    public abstract boolean sacar(double valor);
     @Override
     public String toString() {
         return "Titular: " + cpf + " Numero da Conta: " + numeroDaConta + " Saldo: " + saldo;
